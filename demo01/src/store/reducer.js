@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import shortid from 'shortid';
+import { INIT, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
 const defaultState = {
     inputValue: '',
     list: [
@@ -13,19 +14,19 @@ export default (state = defaultState, action) => {
 
     //Reducer里只能接收state不能改变state
 
-    if (action.type === 'init') {
+    if (action.type === INIT) {
         let newState = _.cloneDeep(state);
         newState.list = action.list;
         newState.loading = false;
         return newState;
     }
-    if (action.type === 'changeInput') {
+    if (action.type === CHANGE_INPUT) {
         let newState = _.cloneDeep(state);
         newState.inputValue = action.value;
         return newState;
     }
 
-    if (action.type === 'addItem') {
+    if (action.type === ADD_ITEM) {
         let newState = _.cloneDeep(state);
         newState.list.push(
             {
@@ -36,7 +37,7 @@ export default (state = defaultState, action) => {
         newState.inputValue = '';
         return newState;
     }
-    if (action.type === 'deleteItem') {
+    if (action.type === DELETE_ITEM) {
         let newState = _.cloneDeep(state);
         newState.list = newState.list.filter((listItem) => { return listItem.id !== action.itemId });
         return newState;

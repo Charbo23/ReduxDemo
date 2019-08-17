@@ -14,7 +14,8 @@ body {
 .input-group {
     padding-bottom: 20px;
 }
-
-.list {
-    width: 80%;
+@media screen and (min-width: 1088px) {
+    .list{
+        max-width: 80vw;
+    }
 }

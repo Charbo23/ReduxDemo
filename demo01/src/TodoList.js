@@ -3,13 +3,7 @@ import axios from "axios";
 import { Input, Button, List, Icon } from 'antd';
 import './style.css';
 import store from "./store";
-
-const IconText = ({ type, text, handleClick, itemId }) => (
-    <span onClick={handleClick} item-id={itemId}>
-        <Icon type={type} style={{ marginRight: 8 }} />
-        {text}
-    </span>
-);
+import {initAction,changeInputAction,addItemAction,deleteItemAction} from './store/actionCreators';
 
 class TodoList extends Component {
     constructor(props) {
@@ -26,15 +20,7 @@ class TodoList extends Component {
         axios.get('https://www.easy-mock.com/mock/5d57aacb8814035379b71cd0/ReduxDemo01/tasks')
             .then((res) => {
                 // console.log(`axios：数据获取成功，内容\n${JSON.stringify(res.data.data.list)}`);
-                // this.setState({
-                //     list: res.data.data.list,
-                //     loading:false
-                // })
-
-                const action = {
-                    type: 'init',
-                    list: res.data.data.list
-                }
+                const action =initAction(res.data.data.list);
                 store.dispatch(action);
             })
             .catch((error) => {
@@ -75,7 +61,10 @@ class TodoList extends Component {
                                     // <a onClick={this.deleteItem} key="list-loadmore-edit">删除</a>
                                 ]}
                             >
-                                {item.value}
+                                  <List.Item.Meta
+                                    title={`待办事项-${item.id}`}
+                                    description={item.value}
+                                  />
                             </List.Item>
                         )}
                     />
@@ -85,10 +74,7 @@ class TodoList extends Component {
     }
 
     changeInputValue(e) {
-        const action = {
-            type: 'changeInput', //动作名称，一般为常量
-            value: e.target.value
-        }
+        const action = changeInputAction(e.target.value);
         store.dispatch(action);
     }
     onKeyUp(e) {
@@ -105,20 +91,20 @@ class TodoList extends Component {
             return;
         }
 
-        const action = {
-            type: 'addItem'
-        }
+        const action = addItemAction();
         store.dispatch(action);
     }
 
     deleteItem(e) {
         let itemId = e.target.getAttribute('item-id');
-        const action = {
-            type: 'deleteItem',
-            itemId: itemId
-        }
+        const action = deleteItemAction(itemId);
         store.dispatch(action);
     }
 }
-
+const IconText = ({ type, text, handleClick, itemId }) => (
+    <span onClick={handleClick} item-id={itemId}>
+        <Icon type={type} style={{ marginRight: 8 }} />
+        {text}
+    </span>
+);
 export default TodoList;
