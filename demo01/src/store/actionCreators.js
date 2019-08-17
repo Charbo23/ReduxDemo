@@ -1,4 +1,4 @@
-import { GET_LIST, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
+import { GET_MY_LIST,GET_LIST, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
 import axios from "axios";
 export const getListAction = (list) => ({
     type: GET_LIST,
@@ -19,6 +19,7 @@ export const deleteItemAction = (itemId) => ({
 })
 
 export const getTodoList = () => {
+    //返回一个中间函数，在真正的store.dispatch之前做操作，相当于拦截器
     return (dispatch) => {
         axios.get('https://www.easy-mock.com/mock/5d57aacb8814035379b71cd0/ReduxDemo01/tasks')
             .then((res) => {
@@ -32,3 +33,7 @@ export const getTodoList = () => {
             })
     }
 }
+
+export const getMyListAction = () => ({
+    type:GET_MY_LIST
+})
