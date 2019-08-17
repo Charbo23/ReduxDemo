@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { Input, Button, List, Icon } from 'antd';
-import './style.css';
 import store from "./store";
+import TodoListUI from './TodoListUI';
 import {initAction,changeInputAction,addItemAction,deleteItemAction} from './store/actionCreators';
 
 class TodoList extends Component {
     constructor(props) {
         super(props);
-        this.changeInputValue = this.changeInputValue.bind(this);
         this.state = store.getState();
+        this.changeInputValue = this.changeInputValue.bind(this);
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
-        this.storeChange = this.storeChange.bind(this);
         this.onKeyUp = this.onKeyUp.bind(this);
+        this.storeChange = this.storeChange.bind(this);
         store.subscribe(this.storeChange);
     }
     componentDidMount() {
@@ -29,47 +28,15 @@ class TodoList extends Component {
     }
     render() {
         return (
-            <div>
-                <div className='input-group'>
-                    <Input
-                        placeholder={this.state.inputValue}
-                        style={{ width: '250px' }}
-                        onChange={this.changeInputValue}
-                        onKeyUp={this.onKeyUp}
-                        value={this.state.inputValue}
-                    />
-                    <Button
-                        type='primary'
-                        onClick={this.addItem}
-                    >增加</Button>
-                </div>
-                <div className='list'>
-                    <List
-                        bordered
-                        loading={this.state.loading}
-                        dataSource={this.state.list}
-                        renderItem={(item) => (
-                            <List.Item
-                                actions={[
-                                    <IconText
-                                        type="delete"
-                                        text="删除"
-                                        key="list-delete"
-                                        handleClick={this.deleteItem}
-                                        itemId={item.id}
-                                    />
-                                    // <a onClick={this.deleteItem} key="list-loadmore-edit">删除</a>
-                                ]}
-                            >
-                                  <List.Item.Meta
-                                    title={`待办事项-${item.id}`}
-                                    description={item.value}
-                                  />
-                            </List.Item>
-                        )}
-                    />
-                </div>
-            </div>
+            <TodoListUI
+                inputValue={this.state.inputValue}
+                changeInputValue={this.changeInputValue}
+                addItem={this.addItem}
+                onKeyUp={this.onKeyUp}
+                deleteItem={this.deleteItem}
+                list={this.state.list}
+                loading={this.state.loading}
+            />
         );
     }
 
@@ -101,10 +68,4 @@ class TodoList extends Component {
         store.dispatch(action);
     }
 }
-const IconText = ({ type, text, handleClick, itemId }) => (
-    <span onClick={handleClick} item-id={itemId}>
-        <Icon type={type} style={{ marginRight: 8 }} />
-        {text}
-    </span>
-);
 export default TodoList;
