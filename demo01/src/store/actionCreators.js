@@ -1,6 +1,6 @@
-import { INIT,CHANGE_INPUT,ADD_ITEM,DELETE_ITEM } from './actionTypes';
-export const initAction = (list) => ({
-    type: INIT,
+import { GET_LIST,CHANGE_INPUT,ADD_ITEM,DELETE_ITEM } from './actionTypes';
+export const getListAction = (list) => ({
+    type: GET_LIST,
     list: list
 })
 export const changeInputAction = (value) => ({

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import shortid from 'shortid';
-import { INIT, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
+import { GET_LIST, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
 const defaultState = {
     inputValue: '',
     list: [
@@ -14,7 +14,7 @@ export default (state = defaultState, action) => {
 
     //Reducer里只能接收state不能改变state
 
-    if (action.type === INIT) {
+    if (action.type === GET_LIST) {
         let newState = _.cloneDeep(state);
         newState.list = action.list;
         newState.loading = false;
