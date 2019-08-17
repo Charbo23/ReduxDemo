@@ -4,24 +4,6 @@ import { Input, Button, List, Icon } from 'antd';
 import './style.css';
 import store from "./store";
 
-// class IconText extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.handleClick = this.handleClick.bind(this);
-//     }
-//     render() {
-//         return (
-//             <span onClick={this.handleClick}>
-//                 <Icon type={this.props.type} style={{ marginRight: 8 }} />
-//                 {this.props.text}
-//             </span>
-//         );
-//     }
-//     handleClick() {
-//         this.props.deleteItem();
-
-//     }
-// }
 const IconText = ({ type, text, handleClick, itemId }) => (
     <span onClick={handleClick} item-id={itemId}>
         <Icon type={type} style={{ marginRight: 8 }} />
