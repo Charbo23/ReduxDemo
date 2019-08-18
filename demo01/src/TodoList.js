@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import store from "./store";
 import TodoListUI from './TodoListUI';
 import { getMyListAction, changeInputAction, addItemAction, deleteItemAction } from './store/actionCreators';
@@ -18,17 +18,20 @@ class TodoList extends Component {
         const action = getMyListAction();
         store.dispatch(action);
     }
+ 
     render() {
         return (
-            <TodoListUI
-                inputValue={this.state.inputValue}
-                changeInputValue={this.changeInputValue}
-                addItem={this.addItem}
-                onKeyUp={this.onKeyUp}
-                deleteItem={this.deleteItem}
-                list={this.state.list}
-                loading={this.state.loading}
-            />
+            <Fragment>
+                <TodoListUI
+                    loading={this.state.loading}
+                    inputValue={this.state.inputValue}
+                    list={this.state.list}
+                    changeInputValue={this.changeInputValue}
+                    addItem={this.addItem}
+                    onKeyUp={this.onKeyUp}
+                    deleteItem={this.deleteItem}
+                />
+            </Fragment>
         );
     }
 

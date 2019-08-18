@@ -9,12 +9,9 @@ const TodoListUI = (props) => (
                 placeholder='Write Something'
                 style={inputStyle}
                 value={props.inputValue}
-                onChange={props.changeInputValue}
-                onKeyUp={props.onKeyUp}
             />
             <Button
                 type='primary'
-                onClick={props.addItem}
             >增加</Button>
         </div>
         <div className='list'>
@@ -32,7 +29,7 @@ const TodoListUI = (props) => (
                                 handleClick={props.deleteItem}
                                 itemId={item.id}
                             />
-                            // <Button type="link" onClick={()=>props.deleteItem(item.id)}>删除</Button>
+
                         ]}
                     >
                         <List.Item.Meta
@@ -45,12 +42,6 @@ const TodoListUI = (props) => (
         </div>
     </div>
 );
-// const IconText = ({ type, text, handleClick, itemId }) => (
-//     <span onClick={handleClick} item-id={itemId}>
-//         <Icon type={type} style={{ marginRight: 8 }} />
-//         {text}
-//     </span>
-// );
 const IconText = ({ type, text, handleClick, itemId }) => (
     <span onClick={() => handleClick(itemId)} >
         <Icon type={type} style={{ marginRight: 8 }} />

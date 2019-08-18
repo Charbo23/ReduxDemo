@@ -1,8 +1,12 @@
-import { GET_MY_LIST,GET_LIST, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
+import { ERROR,GET_MY_LIST,GET_LIST, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
 import axios from "axios";
 export const getListAction = (list) => ({
     type: GET_LIST,
     list: list
+})
+export const errorAction = (message) => ({
+    type: ERROR,
+    message:message
 })
 export const changeInputAction = (value) => ({
     type: CHANGE_INPUT,
