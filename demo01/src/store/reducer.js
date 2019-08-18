@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import shortid from 'shortid';
-import { ERROR,GET_LIST, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
+import { ERROR, GET_LIST, CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
 const defaultState = {
     inputValue: '',
     list: [
@@ -30,7 +30,7 @@ export default (state = defaultState, action) => {
         return newState;
     }
     if (action.type === ERROR) {
-        let newState=_.cloneDeep(state);
+        let newState = _.cloneDeep(state);
         newState.loading = false;
         return newState;
     }

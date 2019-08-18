@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import shortid from 'shortid';
+// import _ from 'lodash';
+// import shortid from 'shortid';
 const defaultState = {
     inputValue: '',
     list: [

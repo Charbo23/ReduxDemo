@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
-import store from "./store";
+import {connect} from 'react-redux';
 import TodoListUI from './TodoListUI';
 
-
 class TodoList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = store.getState();
-        this.storeChange = this.storeChange.bind(this);
-        store.subscribe(this.storeChange);
-    }
-    storeChange() {
-        this.setState(store.getState);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
     render() {
         return (
             <TodoListUI
-                loading={this.state.loading}
-                inputValue={this.state.inputValue}
-                list={this.state.list}
+                loading={this.props.loading}
+                inputValue={this.props.inputValue}
+                list={this.props.list}
             />
         );
     }
 
 }
-export default TodoList;
+const stateToProps = (state)=>({
+    inputValue:state.inputValue,
+    list:state.list,
+    loading:state.loading
+});
+export default connect(stateToProps,null)(TodoList);

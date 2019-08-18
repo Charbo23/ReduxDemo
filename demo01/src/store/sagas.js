@@ -8,16 +8,21 @@ function* mySagas() {
     yield takeEvery(GET_MY_LIST, getMyList);
 }
 function* getMyList() {
-    try {
-        const res = yield axios.get('https://www.easy-mock.com/mock/5d57aacb8814035379b71cd0/ReduxDemo01/tasks');
-        const action = getListAction(res.data.data.list);
+    const { response, error } = yield fetchList();
+    if (response) {
+        const action = getListAction(response.data.data.list);
         yield put(action);
     }
-    catch (error) {
-        // console.log(`axios：数据获取失败，内容 ${error}`);
+    else {
         const action = errorAction();
-        errorNotify('获取数据失败',error.message);
+        errorNotify('获取数据失败', error.message);
         yield put(action);
     }
+}
+
+function fetchList() {
+    return axios.get('https://www.easy-mock.com/mock/5d57aacb8814035379b71cd0/ReduxDemo01/tasks')
+        .then(response => ({ response }))
+        .catch(error => ({ error }));
 }
 export default mySagas;

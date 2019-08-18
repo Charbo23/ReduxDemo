@@ -10,7 +10,8 @@ const TodoListUI = (props) => (
                 style={inputStyle}
                 value={props.inputValue}
                 onChange={props.changeInputValue}
-                onKeyUp={props.onKeyUp}
+                onPressEnter={props.addItem}
+                allowClear
             />
             <Button
                 type='primary'
