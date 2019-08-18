@@ -19,16 +19,14 @@ class TodoList extends Component {
     }
     render() {
         return (
-            <Fragment>
-                <TodoListUI
-                    loading={this.state.loading}
-                    inputValue={this.state.inputValue}
-                    list={this.state.list}
-                    changeInputValue={this.changeInputValue}
-                    addItem={this.addItem}
-                    deleteItem={this.deleteItem}
-                />
-            </Fragment>
+            <TodoListUI
+                loading={this.state.loading}
+                inputValue={this.state.inputValue}
+                list={this.state.list}
+                changeInputValue={this.changeInputValue}
+                addItem={this.addItem}
+                deleteItem={this.deleteItem}
+            />
         );
     }
 
