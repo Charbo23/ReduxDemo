@@ -13,8 +13,9 @@ export const changeInputAction = (value) => ({
     value: value
 })
 
-export const addItemAction = () => ({
-    type: ADD_ITEM
+export const addItemAction = (value) => ({
+    type: ADD_ITEM,
+    value:value
 })
 
 export const deleteItemAction = (itemId) => ({

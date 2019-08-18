@@ -39,11 +39,11 @@ class TodoList extends Component {
     }
 
     addItem() {
-        if (!this.state.inputValue) {
+        let inputValue = this.state.inputValue.trim();
+        if (!inputValue) {
             return;
         }
-
-        const action = addItemAction();
+        const action = addItemAction(inputValue);
         store.dispatch(action);
     }
 

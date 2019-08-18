@@ -45,7 +45,7 @@ export default (state = defaultState, action) => {
         newState.list.push(
             {
                 id: shortid.generate(),
-                value: newState.inputValue
+                value: action.value
             }
         );
         newState.inputValue = '';
