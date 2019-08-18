@@ -32,6 +32,7 @@ const TodoListUI = (props) => (
                                 handleClick={props.deleteItem}
                                 itemId={item.id}
                             />
+                            // <Button type="link" onClick={()=>props.deleteItem(item.id)}>删除</Button>
                         ]}
                     >
                         <List.Item.Meta
