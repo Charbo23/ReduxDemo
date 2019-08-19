@@ -2,14 +2,16 @@ import * as types from './actionTypes';
 import axios from "axios";
 
 export default {
-    getListAction(list) {
+    getList(list) {
         return {
             type: types.GET_LIST,
             list: list
         }
     },
-    changeInputValue(e) {
-        let inputValue = e.currentTarget.value
+    changeInput(e) {
+        
+        let inputValue = e.currentTarget.value;
+        // this.addItem()
         return {
             type: types.CHANGE_INPUT,
             value: inputValue
@@ -17,6 +19,7 @@ export default {
     },
 
     addItem() {
+
         return {
             type: types.ADD_ITEM
 
@@ -37,7 +40,7 @@ export default {
                 .then((res) => {
                     // console.log(`axios：数据获取成功，内容\n${JSON.stringify(res.data.data.list)}`);
                     const list = res.data.data.list;
-                    const action = this.getListAction(list);
+                    const action = this.getList(list);
                     dispatch(action);
                 })
                 .catch((error) => {

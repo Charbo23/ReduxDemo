@@ -10,7 +10,7 @@ class TodoList extends Component {
                 loading={this.props.loading}
                 inputValue={this.props.inputValue}
                 list={this.props.list}
-                changeInputValue={this.props.changeInputValue}
+                changeInput={this.props.changeInput}
                 addItem={this.props.addItem}
                 deleteItem={this.props.deleteItem}
             />
@@ -25,20 +25,5 @@ const mapStateToProps = (state) => ({
     loading: state.loading
 });
 
-//mapDispatchToProps可以是对象也可以是方法
-// const mapDispatchToProps = (dispatch) => ({
-//     changeInputValue(e) {
-//         const action = changeInputAction(e.currentTarget.value);
-//         dispatch(action);
-//     },
-//     addItem() {
-//         const action = addItemAction();
-//         dispatch(action);
-//     },
-//     deleteItem(itemId) {
-//         const action = deleteItemAction(itemId);
-//         dispatch(action);
-//     }
-// });
 const mapDispatchToProps = actions;
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

@@ -14,7 +14,7 @@ class TodoListUI extends Component {
                         placeholder='Write Something'
                         style={inputStyle}
                         value={this.props.inputValue}
-                        onChange={this.props.changeInputValue}
+                        onChange={this.props.changeInput}
                         onPressEnter={this.props.addItem}
                         allowClear
                     />
