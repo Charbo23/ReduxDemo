@@ -7,7 +7,7 @@ import { errorNotify } from '../Notify';
 
 function* mySagas() {
     // yield takeEvery(types.CHANGE_INPUT, changeInput);
-    yield takeEvery(types.INIT_LIST, InitList);
+    yield takeLeading(types.INIT_LIST, InitList);
 }
 
 function* changeInput() {
@@ -30,6 +30,7 @@ function* InitList() {
 }
 
 function fetchList() {
+    //todo 这里如果不成功会有警告
     return axios.get('https://www.easy-mock.com/mock/5d57aacb8814035379b71cd0/ReduxDemo01/tasks')
         .then(response => ({ response }))
         .catch(error => ({ error }));
