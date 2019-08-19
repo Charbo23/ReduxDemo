@@ -1,7 +1,11 @@
 import * as types from './actionTypes';
-import axios from "axios";
 
 export default {
+    InitList() {
+        return {
+            type: types.INIT_LIST
+        }
+    },
     getList(list) {
         return {
             type: types.GET_LIST,
@@ -9,7 +13,7 @@ export default {
         }
     },
     changeInput(e) {
-        
+
         let inputValue = e.currentTarget.value;
         // this.addItem()
         return {
@@ -25,34 +29,16 @@ export default {
 
         }
     },
-
     deleteItem(itemId) {
         return {
             type: types.DELETE_ITEM,
             itemId: itemId
         }
     },
-
-    getTodoList() {
-        //返回一个中间函数，在真正的store.dispatch之前做操作，相当于拦截器
-        return (dispatch) => {
-            axios.get('https://www.easy-mock.com/mock/5d57aacb8814035379b71cd0/ReduxDemo01/tasks')
-                .then((res) => {
-                    // console.log(`axios：数据获取成功，内容\n${JSON.stringify(res.data.data.list)}`);
-                    const list = res.data.data.list;
-                    const action = this.getList(list);
-                    dispatch(action);
-                })
-                .catch((error) => {
-                    console.log(`axios：数据获取失败，内容 ${error}`);
-                })
-        }
-    },
-
-    getMyListAction() {
+    error(message) {
         return {
-
-            type: types.GET_MY_LIST
+            type: types.ERROR,
+            message: message
         }
     }
 }

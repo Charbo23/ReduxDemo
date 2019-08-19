@@ -2,4 +2,5 @@ export const GET_LIST = 'getList';
 export const CHANGE_INPUT = 'changeInput';
 export const ADD_ITEM = 'addItem';
 export const DELETE_ITEM = 'deleteItem';
-export const GET_MY_LIST = 'getMyList';
+export const INIT_LIST = 'InitList';
+export const ERROR = 'error';

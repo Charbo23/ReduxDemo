@@ -1,4 +1,4 @@
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 import axios from "axios";
 import { GET_MY_LIST } from './actionTypes';
 import { getListAction, errorAction } from './actionCreators';
@@ -8,7 +8,7 @@ function* mySagas() {
     yield takeEvery(GET_MY_LIST, getMyList);
 }
 function* getMyList() {
-    const { response, error } = yield fetchList();
+    const { response, error } = yield call(fetchList);
     if (response) {
         const action = getListAction(response.data.data.list);
         yield put(action);

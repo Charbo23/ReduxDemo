@@ -1,27 +1,31 @@
-/* eslint-disable */
-import { takeEvery, put } from 'redux-saga/effects';
+/* eslint-disable no-unused-vars */
+import { takeEvery, put, take, call,takeLeading,takeLatest } from 'redux-saga/effects';
 import axios from "axios";
-import { CHANGE_INPUT } from './actionTypes';
+import * as types from './actionTypes';
 import actions from './actionCreators';
 import { errorNotify } from '../Notify';
 
 function* mySagas() {
-    // yield takeEvery(CHANGE_INPUT, changeInput);
+    // yield takeEvery(types.CHANGE_INPUT, changeInput);
+    yield takeEvery(types.INIT_LIST, InitList);
 }
 
-function* changeInput(){
-    yield put(actions.addItem());   
+function* changeInput() {
+    
+    yield put(actions.addItem());
 }
 
-function* getMyList() {
-    const { response, error } = yield fetchList();
+function* InitList() {
+    const { response, error } = yield call(fetchList);
     if (response) {
         const action = actions.getList(response.data.data.list);
         yield put(action);
     }
     else {
+        const action = actions.error();
         errorNotify('获取数据失败', error.message);
-        
+        yield put(action);
+
     }
 }
 
