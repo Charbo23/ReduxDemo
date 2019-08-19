@@ -24,6 +24,20 @@ const mapStateToProps = (state) => ({
     list: state.list,
     loading: state.loading
 });
-
+//mapDispatchToProps可以是对象也可以是方法
+// const mapDispatchToProps = (dispatch) => ({
+//     changeInput(e) {
+//         const action = actions.changeInput(e);
+//         dispatch(action);
+//     },
+//     addItem() {
+//         const action = actions.addItem();
+//         dispatch(action);
+//     },
+//     deleteItem(itemId) {
+//         const action = actions.deleteItem(itemId);
+//         dispatch(action);
+//     }
+// });
 const mapDispatchToProps = actions;
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
