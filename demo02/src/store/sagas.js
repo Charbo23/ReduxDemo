@@ -7,15 +7,18 @@ import { errorNotify } from '../Notify';
 
 function* mySagas() {
     // yield takeEvery(types.CHANGE_INPUT, changeInput);
-    yield takeLeading(types.INIT_LIST, InitList);
+    yield takeLatest(types.INIT_LIST, initList);
 }
 
 function* changeInput() {
-    
+    let num = Math.floor(Math.random()*100);
+    console.log(num);
+    if(num%2)
+        return;
     yield put(actions.addItem());
 }
 
-function* InitList() {
+function* initList() {
     const { response, error } = yield call(fetchList);
     if (response) {
         const action = actions.getList(response.data.data.list);
@@ -25,7 +28,6 @@ function* InitList() {
         const action = actions.error();
         errorNotify('获取数据失败', error.message);
         yield put(action);
-
     }
 }
 

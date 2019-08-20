@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 
 export default {
-    InitList() {
+    initList() {
         return {
             type: types.INIT_LIST
         }
