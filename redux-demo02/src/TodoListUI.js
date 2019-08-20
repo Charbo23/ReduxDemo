@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Button, List, Icon } from 'antd';
-import { inputStyle } from './style/antd-style';
+import antdStyle from './style/antd-style.module.scss'
 const TodoListUI = (props) => {
     const { loading, inputValue, changeInput, list, addItem, deleteItem } = props;
     return (
@@ -8,7 +8,7 @@ const TodoListUI = (props) => {
             <div className='input-group'>
                 <Input
                     placeholder='Write Something'
-                    style={inputStyle}
+                    className={`test ${antdStyle['ant-input']}`}
                     value={inputValue}
                     onChange={changeInput}
                     onPressEnter={addItem}
