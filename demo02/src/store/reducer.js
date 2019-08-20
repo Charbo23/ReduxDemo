@@ -20,9 +20,10 @@ const defaultState = {
     loading: true
 };
 export default (state = defaultState, action) => {
-    if (action.type === types.ERROR) {
+    //Reducer里只能接收state不能改变state
+    if (action.type === types.INIT_LIST) {
         let newState = _.cloneDeep(state);
-        newState.loading = false;
+        newState.loading = true;
         return newState;
     }
     if (action.type === types.GET_LIST) {
@@ -54,7 +55,14 @@ export default (state = defaultState, action) => {
     }
     if (action.type === types.DELETE_ITEM) {
         let newState = _.cloneDeep(state);
-        newState.list = newState.list.filter((listItem) => { return listItem.id !== action.itemId });
+        newState.list = newState.list.filter((listItem) => { 
+            return listItem.id !== action.itemId 
+        });
+        return newState;
+    }
+    if (action.type === types.ERROR) {
+        let newState = _.cloneDeep(state);
+        newState.loading = false;
         return newState;
     }
     return state;

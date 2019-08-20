@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { takeEvery, put, take, call,takeLeading,takeLatest } from 'redux-saga/effects';
+import { takeEvery, put, take, call, takeLeading, takeLatest } from 'redux-saga/effects';
 import axios from "axios";
 import * as types from './actionTypes';
 import actions from './actionCreators';
@@ -11,9 +11,9 @@ function* mySagas() {
 }
 
 function* changeInput() {
-    let num = Math.floor(Math.random()*100);
+    let num = Math.floor(Math.random() * 100);
     console.log(num);
-    if(num%2)
+    if (num % 2)
         return;
     yield put(actions.addItem());
 }
