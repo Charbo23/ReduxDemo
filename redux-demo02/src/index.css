@@ -2,15 +2,20 @@
     margin: 0;
     padding: 0;
 }
-
+html{
+    font-size: 14px;
+}
 body {
-    padding: 20px 30px;
+    padding: 1rem 1.2rem;
 }
 
 .input-group {
-    padding-bottom: 20px;
+    padding-bottom: 1rem;
 }
 @media screen and (min-width: 1088px) {
+    html{
+        font-size: 23px;
+    }
     .list{
         max-width: 80vw;
     }

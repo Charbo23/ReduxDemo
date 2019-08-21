@@ -1,5 +1,46 @@
-$mr: 10px;
+// CSSModule支持伪类、嵌套、媒体查询、过渡、动画
+$input-group-height: 32px;
+
 .ant-input{
     max-width: 60vw;
-    margin-right: $mr;
+    margin-right: .6rem;
 }
+
+    .ant-input + .ant-btn{
+        margin-right: .5rem;
+        @media screen and (min-width: 1088px) {
+        
+        & span{
+            transition: .3s ease-in-out
+        }
+        &:hover{
+            background-color: #1DA57A;
+            & span{
+                color: black
+            }
+        }
+    }
+}
+
+.donut {
+    width: $input-group-height*0.6;
+    height: $input-group-height*0.6;
+    display: inline-block;
+    border: 5px solid #ccc;
+    border-bottom-color: #1395ba;
+    border-radius: 50%;
+    animation: donut 2s linear infinite;
+    vertical-align: middle;
+    margin-top: -5px;//负边距，不破坏父元素结构
+  }
+
+  @keyframes donut {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
